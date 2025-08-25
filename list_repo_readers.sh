@@ -3,13 +3,25 @@
 #####################
 #Author:  mohd saquib
 #Date:    26th-Aug-2025
-#Version: 1.0.0
+#Version: 1.0.1
 #Usage:   ./list_repo_readers.sh <repo_owner> <repo_name>
 
 #Notes: Requires environment variables $username and $token, and jq installed.
 #Description: List all users with read(pull) acess to a given github repo.
 ######################
 
+# Helper function
+function helper {
+  expected_cmd_args=2
+  if [ $# -ne $expected_cmd_args ]; then
+    echo "Please execute the script with required $expected_cmd_args args."
+    echo "Usage: $0 <repo_owner> <repo_name>"
+    exit 1
+  fi
+}
+
+# Argument validation
+helper "$@"
 
 # GitHub API URL
 API_URL="https://api.github.com"
